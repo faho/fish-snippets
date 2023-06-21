@@ -10,3 +10,9 @@ I recommend not using this as-is. Look at the things here and pick anything you'
   - Randomize fish's syntax highlighting colors
   - Choose a random prompt from fish's presets
   - Print a random fortune (if it finds the fortune database)
+- Some abbreviations:
+  - Turn `m ` into `math ""`, with the cursor between the quotes
+  - Automatically add colorization and pipe to less with `cless`
+  - Automatically expand directories in command position into `cd dir/`
+  - Turn `...` into `cd ../../` (with as many `../` as `.`s)
+  - `!!` and `!$` history expansion
