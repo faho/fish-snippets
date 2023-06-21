@@ -3,6 +3,9 @@ Some neat fish snippets and tricks
 
 I recommend not using this as-is. Look at the things here and pick anything you're interested in.
 
+Absolutely no warranty on any of these. Use them if you think they're neat or useful, but these aren't big "released" things.
+This is my little playground.
+
 # What's here
 
 - A port of [pridecat](https://github.com/lunasorcery/pridecat) to pure builtins-only fish script - pipe into it to have your output colored in pride flag colors
