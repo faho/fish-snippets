@@ -76,3 +76,45 @@ function cless
 end
 
 abbr --add cless --function cless --set-cursor --position anywhere
+
+# A simple version of history expansion - '!!' and '!$'
+function histreplace
+    switch "$argv[1]"
+        case !!
+            echo -- $history[1]
+            return 0
+        case '!$'
+            echo -- $history[1] | read -lat tokens
+            echo -- $tokens[-1]
+            return 0
+    end
+    return 1
+end
+
+abbr --add !! --function histreplace --position anywhere
+abbr --add '!$' --function histreplace --position anywhere
+
+# Some CD niceties - automatically turn a directory in command position (with trailing "/")
+# into a `cd ` command.
+function autocd
+    set -q argv[1]
+    or return 1
+
+    type -q "$argv[1]"
+    and return 1
+
+    echo -- $argv[1] | read -lt dirs
+    string match -rq '^(.+)?/*'
+    or set -p dirs $CDPATH/$argv
+
+    path is -dx -- $dirs
+    or return 1
+
+    echo -- cd $argv[1]
+end
+
+abbr -a --regex '.*/' --function autocd autocd
+
+function multicd; echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../); end
+
+abbr --add dotdot --regex '^\.\.+$' --function multicd
