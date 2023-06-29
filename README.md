@@ -19,3 +19,13 @@ This is my little playground.
   - Automatically expand directories in command position into `cd dir/`
   - Turn `...` into `cd ../../` (with as many `../` as `.`s)
   - `!!` and `!$` history expansion
+- poggress - this displays a progress bar of the given size:
+
+   ```fish
+   set -l char c
+   for perc in (seq 0 100)
+       test $char = c; and set char C; or set char c
+       printf '[%s]\r' (poggress -w (math $COLUMNS - 2) -c (set_color bryellow)$char(set_color normal) $perc)
+       sleep (math (random 0 1 500) / 1800)
+   end
+   ```

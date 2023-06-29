@@ -118,3 +118,14 @@ abbr -a --regex '.*/' --function autocd autocd
 function multicd; echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../); end
 
 abbr --add dotdot --regex '^\.\.+$' --function multicd
+
+# Replace `:foo:` with the unicode codepoint by that name.
+# Requires python to do the lookup, and since it has to be one token you need quotes or escape spaces.
+# Bit of an experiment, really
+function uni_replace
+    string match -rg '^:(.*):$' -- $argv[1] | read -lat name
+    or return
+    python3 -c 'import sys; from unicodedata import lookup; print(lookup(sys.argv[1]))' "$name" 2>/dev/null
+end
+
+abbr unicode --position anywhere --regex ':.*:' --function uni_replace
