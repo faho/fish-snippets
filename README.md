@@ -18,7 +18,7 @@ This is my little playground.
   - Automatically add colorization and pipe to less with `cless`
   - Automatically expand directories in command position into `cd dir/`
   - Turn `...` into `cd ../../` (with as many `../` as `.`s)
-  - `!!` and `!$` history expansion
+  - `!!`, `!$` and `^foo^bar` history expansion
 - poggress - this displays a progress bar of the given size:
 
    ```fish
