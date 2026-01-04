@@ -84,8 +84,8 @@ function histreplace
             echo -- $history[1]
             return 0
         case '!$'
-            echo -- $history[1] | read -lat tokens
-            echo -- $tokens[-1]
+            # Get the last line and tokenize that.
+            echo (commandline --input=$history[1] -o)[-1]
             return 0
         case '^*^*'
             set -l kv (string split '^' -- $argv[1])
